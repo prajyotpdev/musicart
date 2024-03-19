@@ -3,11 +3,11 @@ import { Routes, Route, useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
 import LoadingScreen from "../pages/loading/LoadingScreen.jsx";
 import SignInPage from "../pages/signin/SignInPage.jsx";
-import { selectUser } from "../store/slices/authSlice.js"; 
+import { selectUser } from "../store/slices/authSlice.js";
 import { useDispatch, useSelector } from "react-redux";
 import HomePage from "../pages/home/HomePage.jsx";
 import AboutPage from "../pages/about/AboutPage.jsx";
-import PublishedPage from "../pages/publish_page/PublicPage.jsx";
+// import PublishedPage from "../pages/publish_page/PublicPage.jsx";
 import DashBoardpage from "../pages/dashboard/DashboardPage.jsx";
 import RequireAuth from "../components/auth/require-auth.jsx";
 import RegisterPage from "../pages/register/RegisterPage.jsx";
@@ -63,10 +63,10 @@ const RouteManager = () => {
       <Route path="/musicart/signin" element={<SignInPage />} />
       {/* <Route path="/musicart/updates" element={<UpdatesPage />} /> */}
       {/* <Route path="/musicart/rough" element={<RoughPage />} /> */}
-      <Route
+      {/* <Route
         path="/musicart/profiles/:profileId"
         element={<PublishedPage />}
-      ></Route>
+      ></Route> */}
       <Route
         path="/musicart/user"
         element={
