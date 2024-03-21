@@ -77,10 +77,11 @@ const DashBoardpage = () => {
         <div className={styles.dashboardHeroContainer}>
           {/* <button onClick={clearLocalStorage}>Clear</button> */}
           <div className={styles.horizontailScroll}>
-            <StatusFeed statusId="Backlog" key={1} />
+            {/* <ItemGrid/> */}
+            {/* <StatusFeed statusId="Backlog" key={1} />
             <StatusFeed statusId="To-do" key={2} />
             <StatusFeed statusId="In progress" key={3} />
-            <StatusFeed statusId="Done" key={4} />
+            <StatusFeed statusId="Done" key={4} /> */}
           </div>
         </div>
       </div>

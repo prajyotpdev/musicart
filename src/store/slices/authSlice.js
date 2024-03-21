@@ -75,6 +75,7 @@ export const registerAsync = (userData) => async (dispatch) => {
       
       if (signin.ok) {
         const responseJson = await signin.json();
+        console.log(responseJson);
         dispatch(setUser(responseJson));
         // console.log("Response from the server:", responseJson);
       } else {

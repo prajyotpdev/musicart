@@ -2,6 +2,7 @@ import { useState } from "react";
 import User from "../../store/models/User";
 import styleshomepage from "../home/HomePage.module.css";
 import Sidebar from "./components/sidebar/Sidebar.jsx";
+import DashBoardpage from "../dashboard/DashboardPage.jsx";
 
 const HomePage = () => {
   const [activeSection, setActiveSection] = useState("MainSection"); // Track active section

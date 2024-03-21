@@ -17,7 +17,7 @@ const Sidebar = ({ onSectionChange, currentsection }) => {
   const logout = () => {
     console.log("Logout Sucessfully");
     localStorage.removeItem("user");
-    navigate("/promanage/signin");
+    navigate("/musicart/signin");
   };
 
   const dumpAllData = () => {
