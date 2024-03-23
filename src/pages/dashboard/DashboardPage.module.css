@@ -24,16 +24,41 @@
  } */
  
  .dashboardHeroContainer{
-   width: 75vw;
-   overflow-x: auto;
+   width: 100vw;
    display: flex;
    padding: 1rem;
  }
- .horizontailScroll{  
+ .verticalTailScroll{  
    display: flex;
-   flex-direction: column;
- 
+   flex-direction: column; 
  }
+
+ .cards {
+  width: 80vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin: auto auto;
+  display: grid;
+  gap: 1rem;
+}
+
+@media (max-width: 480px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 768px) and (max-width: 1024px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .cards { 
+       grid-template-columns: repeat(4,1fr);
+  }
+}
+
  /* .tasksFeedContainer{
      width: 410px;
      height: 80vh;

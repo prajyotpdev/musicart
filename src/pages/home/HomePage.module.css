@@ -1,6 +1,8 @@
 .homepage {
      display: flex; 
-     height: 100vh; 
+     height: 100vh;
+     flex-direction: column; 
+     width:  100vw; 
    }
    
    .mainContainer {
@@ -12,6 +14,6 @@
 
    .heroContainer {
      display: flex;
-     flex-direction: row;
+     flex-direction: column;
     }
 

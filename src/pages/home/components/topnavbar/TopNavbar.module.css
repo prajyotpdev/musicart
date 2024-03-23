@@ -1,0 +1,84 @@
+.topnavbar{
+     width: 80vw;
+     margin-left: auto;
+     margin-right: auto;
+     background-color: #ffffff;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: space-between;
+} 
+
+.topnavbar-title {
+     padding: 10px;
+     font-family: "Poppins";
+     background-color: transparent; 
+     float: left;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     align-content: center;
+     justify-content: center;
+     justify-items: center;
+     column-gap: 10px;
+     font-weight: bold;
+     font-size: 25px;
+     color: #000000;
+   }
+   .topnavbar-title>img{
+     height: 30%;
+     stroke: rgb(150, 160, 150);
+     fill: #ff0a0a;
+   }
+   
+.topnavbar-item {
+     padding: 10px;
+     cursor: pointer;
+     transition: background-color 0.3s;
+     font-family: "Poppins";
+     background-color: transparent; 
+     float: left;
+     height: 7vh;
+     font-size: 16px;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: left;
+     align-content: center;
+     column-gap: 1ch;
+     color: #707070;
+   }
+   
+   .topnavbar-item:hover {
+     background-color: #95c7ff;
+     font-family: "Poppins";
+     fill: #111;
+   }
+   
+   .topnavbar-item.active {
+     background-color: #4391ED1A; 
+     color: #000000;
+     font-family: "Poppins";
+     font-size: 18px;
+   }
+
+   .topnavbar> button{
+     border: transparent;   
+     width: 100%;
+     font-family: "Poppins";
+   }
+   
+.topnavbar-signout {
+     padding: 10px;
+     height: 8vh;
+     font-family: "Poppins";
+     background-color: transparent; 
+     display: flex;
+     flex-direction: row;
+     align-items: center;
+     justify-content: center;
+     column-gap: 10px;
+     font-size: 18px;
+     font-weight: 500;
+     color: #ff0000;
+   }

@@ -3,6 +3,7 @@ import User from "../../store/models/User";
 import styleshomepage from "../home/HomePage.module.css";
 import Sidebar from "./components/sidebar/Sidebar.jsx";
 import DashBoardpage from "../dashboard/DashboardPage.jsx";
+import TopNavbar from "./components/topnavbar/TopNavbar.jsx";
 
 const HomePage = () => {
   const [activeSection, setActiveSection] = useState("MainSection"); // Track active section
@@ -18,12 +19,12 @@ const HomePage = () => {
   };
   const renderSection = () => {
     switch (activeSection) {
-      case "board":
+      case "home":
         return <DashBoardpage />;
-      case "analytics":
-        return <AnalyticsPage />;
+      case "invoice":
+        return <InvoicePage />;
       case "settings":
-        return <SettingsPage />;
+        return <CartPage />;
       default:
         return <DashBoardpage />;
     }
@@ -31,7 +32,7 @@ const HomePage = () => {
 
   return (
     <div className={styleshomepage.homepage}>
-      <Sidebar
+      <TopNavbar
         onSectionChange={handleSectionChange}
         currentsection={activeSection}
         style={{ flex: "1 auto" }}

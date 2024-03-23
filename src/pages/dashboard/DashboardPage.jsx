@@ -5,6 +5,9 @@ import Navbar from "../home/components/navbar/Navbar.jsx";
 // import { fetchTasks } from "../../store/slices/taskSlice";
 import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
+import MusicComponent from "./components/itemGrid/musicItemComponent.jsx";
+import img1 from "../../assets/images/img1.png";
+import img2 from "../../assets/images/img2.png";
 
 const DashBoardpage = () => {
   const clearLocalStorage = () => {
@@ -12,49 +15,50 @@ const DashBoardpage = () => {
     // You can also update the state or perform any other necessary actions
   };
 
-  const currentTaskList = [
+  const musicItems = [
     {
-      taskCheckList: [],
-      _id: "65d60bb73545645bde5552ff",
-      taskStatus: "Done",
-      taskTitle: "Task Title3",
-      taskValidity: "2022-02-04T12:34:56.789Z",
-      taskPriority: "Late",
-      createdBy: "65d5d5fafd55e7cade4c3fb3",
-      createdAt: "2022-02-01T12:34:56.789+00:00",
+      img: img1,
+      title: "Sony WH-CH720N",
+      price: "Price - ₹ 3,500",
+      color: "Black | Over-ear headphone",
     },
     {
-      _id: "65d79a6e01c359116a78c7c3",
-      taskTitle: "Task Title3",
-      taskStatus: "In Progress",
-      taskPriority: "Late",
-      taskValidity: "2024-02-22T12:34:56.789Z",
-      taskCheckList: ["subtask1", "subtask2", "subtask3"],
-      __v: 0,
-      createdBy: "65d5d5fafd55e7cade4c3fb3",
-      createdAt: "2022-02-03T12:34:56.789+00:00",
+      img: img2,
+      title: "JBL C100SI",
+      price: "Price - ₹ 599",
+      color: "Black | In-ear headphone",
+    },
+    {
+      img: img2,
+      title: "JBL C100SI",
+      price: "Price - ₹ 599",
+      color: "Black | In-ear headphone",
+    },
+    {
+      img: img2,
+      title: "JBL C100SI",
+      price: "Price - ₹ 599",
+      color: "Black | In-ear headphone",
+    },
+    {
+      img: img2,
+      title: "JBL C100SI",
+      price: "Price - ₹ 599",
+      color: "Black | In-ear headphone",
+    },
+    {
+      img: img2,
+      title: "JBL C100SI",
+      price: "Price - ₹ 599",
+      color: "Black | In-ear headphone",
+    },
+    {
+      img: img2,
+      title: "JBL C100SI",
+      price: "Price - ₹ 599",
+      color: "Black | In-ear headphone",
     },
   ];
-  const [taskList, setTaskList] = useState(currentTaskList);
-
-  const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchTasks());
-  // }, [dispatch]);
-
-  const handleCollapseAll = (section) => {
-    onSectionChange(section);
-  };
-
-  const handleFilteredDataChange = (filteredData) => {
-    console.log("Filtered Data:", filteredData);
-  };
-
-  const handleGetAllTasks = async (e) => {
-    dispatch(fetchTasks());
-    // onClose();
-  };
 
   return (
     <>
@@ -62,10 +66,10 @@ const DashBoardpage = () => {
         <Navbar />
         <div className={styles.dashboardHeader}>
           Board
-          <FilterForm
+          {/* <FilterForm
             data={currentTaskList}
             onFilteredDataChange={handleFilteredDataChange}
-          />
+          /> */}
         </div>
         {/* <SolidButton
           bgcolor={"#FF2473"}
@@ -76,13 +80,24 @@ const DashBoardpage = () => {
         </SolidButton> */}
         <div className={styles.dashboardHeroContainer}>
           {/* <button onClick={clearLocalStorage}>Clear</button> */}
-          <div className={styles.horizontailScroll}>
-            {/* <ItemGrid/> */}
-            {/* <StatusFeed statusId="Backlog" key={1} />
+          {/* <div className={styles.verticalTailScroll}> */}
+          <div className={styles.cards}>
+            {musicItems.map((item) => (
+              <MusicComponent
+                img={item.img}
+                title={item.title}
+                price={item.price}
+                color={item.color}
+              ></MusicComponent>
+            ))}
+          </div>
+
+          {/* <ItemGrid/> */}
+          {/* <StatusFeed statusId="Backlog" key={1} />
             <StatusFeed statusId="To-do" key={2} />
             <StatusFeed statusId="In progress" key={3} />
             <StatusFeed statusId="Done" key={4} /> */}
-          </div>
+          {/* </div> */}
         </div>
       </div>
     </>

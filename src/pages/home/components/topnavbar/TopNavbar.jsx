@@ -1,0 +1,73 @@
+import React from "react";
+import styles from "./TopNavbar.module.css";
+import SandboxLogo from "../../../../assets/icons/sandboxLogo.svg";
+import BoardIcon from "../../../../assets/icons/boardIcon.svg";
+import AnalyticsIcon from "../../../../assets/icons/analyticsIcon.svg";
+import SettingsIcon from "../../../../assets/icons/settingsIcon.svg";
+import SignOutIcon from "../../../../assets/icons/signoutIcon.svg";
+import { useNavigate } from "react-router-dom";
+
+const TopNavbar = ({ onSectionChange, currentsection }) => {
+  const handleClick = (section) => {
+    onSectionChange(section);
+  };
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    console.log("Logout Sucessfully");
+    localStorage.removeItem("user");
+    navigate("/musicart/signin");
+  };
+
+  const dumpAllData = () => {
+    localStorage.clear();
+    // You can also update the state or perform any other necessary actions
+  };
+
+  return (
+    <div className={styles.topnavbar}>
+      <button
+        onClick={() => handleClick("board")}
+        className={`${styles["topnavbar-title"]}`}
+      >
+        <img src={SandboxLogo} alt="logo" />
+        MusicArt
+      </button>
+      <button
+        onClick={() => handleClick("board")}
+        className={`${styles["topnavbar-item"]} ${
+          currentsection === "board" ? styles.active : ""
+        }`}
+      >
+        <img src={BoardIcon} alt="board_icon" />
+        Board
+      </button>
+      <button
+        onClick={() => handleClick("analytics")}
+        className={`${styles["topnavbar-item"]} ${
+          currentsection === "analytics" ? styles.active : ""
+        }`}
+        style={{ fill: currentsection === "board" ? "blue" : "inherit" }}
+      >
+        <img src={AnalyticsIcon} alt="logo" />
+        Analytics
+      </button>
+      <button
+        onClick={() => handleClick("settings")}
+        className={`${styles["topnavbar-item"]} ${
+          currentsection === "settings" ? styles.active : ""
+        }`}
+      >
+        <img src={SettingsIcon} alt="logo" fill="black" />
+        Settings
+      </button>
+      <button onClick={logout} className={`${styles["topnavbar-signout"]}`}>
+        <img src={SignOutIcon} alt="logo" />
+        Logout
+      </button>
+    </div>
+  );
+};
+
+export default TopNavbar;
