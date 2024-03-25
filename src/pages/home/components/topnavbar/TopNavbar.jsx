@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./TopNavbar.module.css";
-import SandboxLogo from "../../../../assets/icons/sandboxLogo.svg";
+import MusicArtLogo from "../../../../assets/icons/musicArtLogo.svg";
 import BoardIcon from "../../../../assets/icons/boardIcon.svg";
 import AnalyticsIcon from "../../../../assets/icons/analyticsIcon.svg";
 import SettingsIcon from "../../../../assets/icons/settingsIcon.svg";
@@ -27,45 +27,47 @@ const TopNavbar = ({ onSectionChange, currentsection }) => {
 
   return (
     <div className={styles.topnavbar}>
-      <button
-        onClick={() => handleClick("board")}
-        className={`${styles["topnavbar-title"]}`}
-      >
-        <img src={SandboxLogo} alt="logo" />
-        MusicArt
-      </button>
-      <button
-        onClick={() => handleClick("board")}
-        className={`${styles["topnavbar-item"]} ${
-          currentsection === "board" ? styles.active : ""
-        }`}
-      >
-        <img src={BoardIcon} alt="board_icon" />
-        Board
-      </button>
-      <button
-        onClick={() => handleClick("analytics")}
-        className={`${styles["topnavbar-item"]} ${
-          currentsection === "analytics" ? styles.active : ""
-        }`}
-        style={{ fill: currentsection === "board" ? "blue" : "inherit" }}
-      >
-        <img src={AnalyticsIcon} alt="logo" />
-        Analytics
-      </button>
-      <button
-        onClick={() => handleClick("settings")}
-        className={`${styles["topnavbar-item"]} ${
-          currentsection === "settings" ? styles.active : ""
-        }`}
-      >
-        <img src={SettingsIcon} alt="logo" fill="black" />
-        Settings
-      </button>
-      <button onClick={logout} className={`${styles["topnavbar-signout"]}`}>
-        <img src={SignOutIcon} alt="logo" />
-        Logout
-      </button>
+      <div className={styles.leftsection}>
+        <button
+          onClick={() => handleClick("home")}
+          className={`${styles["topnavbar-title"]}`}
+        >
+          <img src={MusicArtLogo} alt="logo" />
+          MusicArt
+        </button>
+        <button
+          onClick={() => handleClick("home")}
+          className={`${styles["topnavbar-item"]} ${
+            currentsection === "home" ? styles.active : ""
+          }`}
+        >
+          Home
+        </button>
+        <button
+          onClick={() => handleClick("invoice")}
+          className={`${styles["topnavbar-item"]} ${
+            currentsection === "invoice" ? styles.active : ""
+          }`}
+          style={{ fill: currentsection === "board" ? "blue" : "inherit" }}
+        >
+          Invoice
+        </button>
+      </div>
+      <div className={styles.rightnavsection}>
+        <button
+          onClick={() => handleClick("settings")}
+          className={`${styles["topnavbar-item"]} ${
+            currentsection === "settings" ? styles.active : ""
+          }`}
+        >
+          <img src={SettingsIcon} alt="logo" fill="black" />
+          Settings
+        </button>
+        <button onClick={logout} className={`${styles["topnavbar-signout"]}`}>
+          <img src={SignOutIcon} alt="logo" />
+          Logout
+        </button>
+      </div>
     </div>
   );
 };

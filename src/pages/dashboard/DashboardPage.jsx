@@ -59,18 +59,19 @@ const DashBoardpage = () => {
       color: "Black | In-ear headphone",
     },
   ];
+  
 
   return (
     <>
       <div className={styles.dashboardPage}>
         <Navbar />
-        <div className={styles.dashboardHeader}>
+        {/* <div className={styles.dashboardHeader}>
           Board
-          {/* <FilterForm
+          <FilterForm
             data={currentTaskList}
             onFilteredDataChange={handleFilteredDataChange}
-          /> */}
-        </div>
+          />
+        </div> */}
         {/* <SolidButton
           bgcolor={"#FF2473"}
           fontColor={"#FFFFFF"}

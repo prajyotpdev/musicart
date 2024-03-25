@@ -37,4 +37,19 @@ class MusicItemModel {
       data.displayImageList ? data.displayImageList.slice() : []
     );
   }
+  
+  toJSON() {
+    return {
+      _id: this._id,
+      isAvailable: this.isAvailable,
+      company: this.company,
+      aboutItem: this.aboutItem,
+      displayName: this.displayName,
+      colour: this.colour,
+      price: this.price,
+      type: this.type,
+      description: this.description,
+      displayImageList: this.displayImageList,
+    };
+  }
 }

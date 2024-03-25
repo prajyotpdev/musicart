@@ -4,6 +4,7 @@ import styleshomepage from "../home/HomePage.module.css";
 import Sidebar from "./components/sidebar/Sidebar.jsx";
 import DashBoardpage from "../dashboard/DashboardPage.jsx";
 import TopNavbar from "./components/topnavbar/TopNavbar.jsx";
+import InvoicePage from "../invoice/InvoicePage.jsx";
 
 const HomePage = () => {
   const [activeSection, setActiveSection] = useState("MainSection"); // Track active section
