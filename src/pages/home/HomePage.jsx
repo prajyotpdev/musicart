@@ -7,7 +7,7 @@ import TopNavbar from "./components/topnavbar/TopNavbar.jsx";
 import InvoicePage from "../invoice/InvoicePage.jsx";
 
 const HomePage = () => {
-  const [activeSection, setActiveSection] = useState("MainSection"); // Track active section
+  const [activeSection, setActiveSection] = useState("home"); // Track active section
   const [user, setUser] = useState(new User());
   const updateUser = () => {
     const updatedUser = new User("prajyot@getTimeMeasureUtils.com");

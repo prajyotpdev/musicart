@@ -3,18 +3,44 @@ import FilterForm from "../../components/dropdown/Dropdown.jsx";
 import StatusFeed from "./components/feed/StatusFeed.jsx";
 import Navbar from "../home/components/navbar/Navbar.jsx";
 // import { fetchTasks } from "../../store/slices/taskSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import MusicComponent from "./components/itemGrid/musicItemComponent.jsx";
 import img1 from "../../assets/images/img1.png";
 import img2 from "../../assets/images/img2.png";
+import { useNavigate } from "react-router-dom";
+import { fetchAllItems } from "../../store/slices/feedSlice.js";
 
 const DashBoardpage = () => {
+  const musicItemsFeed = useSelector((state) => state.feed.data);
+  useEffect(() => {
+    console.log("This is musicFeed by default" + musicItemsFeed);
+    fetchFeed();
+  }, []);
+
+  const [feed, setFeed] = useState([]);
   const clearLocalStorage = () => {
     localStorage.clear();
     // You can also update the state or perform any other necessary actions
   };
+  const fetchFeed = async () => {
+    try {
+      // dispatch(fetchAllItems());
+      // const response = await axios.get(
+      //   "http://localhost:8000/api/v1/musicartitem/all"
+      // );
+      // setFeed(response.data);
+      console.log("successed");
+    } catch (error) {
+      console.error("Error fetching feed:", error);
+    }
+  };
 
+  const updateFeed = async (filteredItems) => {
+    setFeed(filteredItems); // Update feed with filtered items
+  };
+
+  //  const feed =  MusicItemModel(isAvailable);
   const musicItems = [
     {
       img: img1,
@@ -59,7 +85,6 @@ const DashBoardpage = () => {
       color: "Black | In-ear headphone",
     },
   ];
-  
 
   return (
     <>
