@@ -56,12 +56,8 @@ const feedListSlice = createSlice({
     });
     builder.addCase(fetchAllItems.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.data = action.payload;
+      state.feed = action.payload;
       console.log("this is action.payload " + action.payload)
-      // state.doneTasks = action.payload.filter(task => task.taskStatus === 'Done');
-      // state.todoTasks = action.payload.filter(task => task.taskStatus === 'To-do');
-      // state.backlogTasks = action.payload.filter(task => task.taskStatus === 'Backlog');
-      // state.inProgressTasks = action.payload.filter(task => task.taskStatus === 'In-Progress');
     });
     builder.addCase(fetchAllItems.rejected, (state, action) => {
       console.log("Error", action.payload);

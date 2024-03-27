@@ -12,11 +12,38 @@ import { useNavigate } from "react-router-dom";
 import { fetchAllItems } from "../../store/slices/feedSlice.js";
 
 const DashBoardpage = () => {
-  const musicItemsFeed = useSelector((state) => state.feed.data);
+  const dispatch = useDispatch();
+  const musicItemsFeed = useSelector(
+    (state) => state.feed && state.feed.feed && state.feed.feed.data
+  );
+  console.log("this is my musicfeed" + musicItemsFeed);
+  const isLoading = useSelector((state) => state.feed.isLoading);
+  // useEffect(() => {
+  //   handleGetAllData();
+  // });
   useEffect(() => {
-    console.log("This is musicFeed by default" + musicItemsFeed);
-    fetchFeed();
-  }, []);
+    // Dispatch fetchAllItems action when component mounts
+    dispatch(fetchAllItems());
+  }, [dispatch]);
+  const handleGetAllData = async (e) => {
+    // dispatch(fetchAllItems());
+    // setFeed([
+    //   {
+    //     _id: "65fc605825e7463a49446e9a",
+    //     displayName: "My Favorite Song",
+    //     type: "song",
+    //     price: 9,
+    //     colour: "red",
+    //     description: "This is a detailed description of the song",
+    //     company: "Music Company",
+    //     aboutItem: "A great song",
+    //     isAvailable: true,
+    //     displayImageList: ["image1.jpg", "image2.png"],
+    //     __v: 0,
+    //   },
+    // ]);
+    console.log("this is username" + nameUser);
+  };
 
   const [feed, setFeed] = useState([]);
   const clearLocalStorage = () => {
@@ -43,46 +70,46 @@ const DashBoardpage = () => {
   //  const feed =  MusicItemModel(isAvailable);
   const musicItems = [
     {
-      img: img1,
-      title: "Sony WH-CH720N",
+      displayImageList: [img1],
+      displayName: "Sony WH-CH720N",
       price: "Price - ₹ 3,500",
-      color: "Black | Over-ear headphone",
+      colour: "Black | Over-ear headphone",
     },
     {
-      img: img2,
-      title: "JBL C100SI",
+      displayImageList: [img2],
+      displayName: "JBL C100SI",
       price: "Price - ₹ 599",
-      color: "Black | In-ear headphone",
+      colour: "Black | In-ear headphone",
     },
     {
-      img: img2,
-      title: "JBL C100SI",
+      displayImageList: [img2],
+      displayName: "JBL C100SI",
       price: "Price - ₹ 599",
-      color: "Black | In-ear headphone",
+      colour: "Black | In-ear headphone",
     },
     {
-      img: img2,
-      title: "JBL C100SI",
+      displayImageList: [img2],
+      displayName: "JBL C100SI",
       price: "Price - ₹ 599",
-      color: "Black | In-ear headphone",
+      colour: "Black | In-ear headphone",
     },
     {
-      img: img2,
-      title: "JBL C100SI",
+      displayImageList: [img2],
+      displayName: "JBL C100SI",
       price: "Price - ₹ 599",
-      color: "Black | In-ear headphone",
+      colour: "Black | In-ear headphone",
     },
     {
-      img: img2,
-      title: "JBL C100SI",
+      displayImageList: [img2],
+      displayName: "JBL C100SI",
       price: "Price - ₹ 599",
-      color: "Black | In-ear headphone",
+      colour: "Black | In-ear headphone",
     },
     {
-      img: img2,
-      title: "JBL C100SI",
+      displayImageList: [img2],
+      displayName: "JBL C100SI",
       price: "Price - ₹ 599",
-      color: "Black | In-ear headphone",
+      colour: "Black | In-ear headphone",
     },
   ];
 
@@ -107,7 +134,7 @@ const DashBoardpage = () => {
         <div className={styles.dashboardHeroContainer}>
           {/* <button onClick={clearLocalStorage}>Clear</button> */}
           {/* <div className={styles.verticalTailScroll}> */}
-          <div className={styles.cards}>
+          {/* <div className={styles.cards}>
             {musicItems.map((item) => (
               <MusicComponent
                 img={item.img}
@@ -116,6 +143,21 @@ const DashBoardpage = () => {
                 color={item.color}
               ></MusicComponent>
             ))}
+          </div> */}
+          {isLoading && !musicItemsFeed && <div>..Loading</div>}
+          <div className={styles.cards}>
+            {musicItemsFeed &&
+              musicItemsFeed.map((item) => (
+                <MusicComponent
+                  id={item._id}
+                  displayImageList={item.displayImageList}
+                  displayName={item.displayName}
+                  price={item.price}
+                  colour={item.colour}
+                >
+                  <div key={item._id}></div>
+                </MusicComponent>
+              ))}
           </div>
 
           {/* <ItemGrid/> */}

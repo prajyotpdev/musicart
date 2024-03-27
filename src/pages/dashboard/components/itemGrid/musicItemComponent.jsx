@@ -6,7 +6,7 @@ function MusicComponent(props) {
     <div className={styles.musicContainer}>
       <div className={styles.imgContainer}>
         <div>
-          <img src={props.img} width="140" height="140" />
+          <img src={props.displayImageList[0]} width="140" height="140" />
         </div>
       </div>
       <div style={{ padding: "5px" }}>
@@ -18,7 +18,7 @@ function MusicComponent(props) {
             paddingBottom: "5px",
           }}
         >
-          {props.title}
+          {props.displayName}
         </div>
         <div
           style={{
@@ -38,7 +38,7 @@ function MusicComponent(props) {
             paddingBottom: "5px",
           }}
         >
-          {props.color}
+          {props.colour}
         </div>
       </div>
     </div>
