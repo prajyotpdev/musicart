@@ -1,4 +1,4 @@
-import styles from "../musicItemComponent.module.css";
+import styles from "../itemGrid/musicItemComponent.module.css";
 import img1 from "../../../../assets/images/img1.png";
 
 function MusicComponent(props) {

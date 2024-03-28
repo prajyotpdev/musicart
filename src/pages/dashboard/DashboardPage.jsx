@@ -9,6 +9,7 @@ import MusicComponent from "./components/itemGrid/musicItemComponent.jsx";
 import img1 from "../../assets/images/img1.png";
 import img2 from "../../assets/images/img2.png";
 import { useNavigate } from "react-router-dom";
+
 import { fetchAllItems } from "../../store/slices/feedSlice.js";
 
 const DashBoardpage = () => {
@@ -21,10 +22,10 @@ const DashBoardpage = () => {
   // useEffect(() => {
   //   handleGetAllData();
   // });
-  useEffect(() => {
-    // Dispatch fetchAllItems action when component mounts
-    dispatch(fetchAllItems());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   // Dispatch fetchAllItems action when component mounts
+  //   dispatch(fetchAllItems());
+  // }, [dispatch]);
   const handleGetAllData = async (e) => {
     // dispatch(fetchAllItems());
     // setFeed([
@@ -46,6 +47,7 @@ const DashBoardpage = () => {
   };
 
   const [feed, setFeed] = useState([]);
+  const [dummyData, setDummyData] = useState([]);
   const clearLocalStorage = () => {
     localStorage.clear();
     // You can also update the state or perform any other necessary actions
@@ -67,6 +69,36 @@ const DashBoardpage = () => {
     setFeed(filteredItems); // Update feed with filtered items
   };
 
+  const getRandomInt = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+  const getRandomImageUrl = () => {
+    const width = 200;
+    const height = 200;
+    const randomId = getRandomInt(1, 1000); // Generate a random ID for the image
+    return "https://picsum.photos/200";
+  };
+  const generateDummyData = () => {
+    const data = [];
+    for (let i = 0; i < 30; i++) {
+      const numImages = getRandomInt(1, 5); // Generate a random number of images (between 1 and 5)
+      const displayImageList = Array.from({ length: numImages }, () =>
+        getRandomImageUrl()
+      );
+      data.push({
+        isAvailable: Math.random() < 0.5, // Random boolean value for isAvailable
+        company: "Music Company",
+        aboutItem: "A great song",
+        displayName: `My Favorite Song ${i + 1}`,
+        colour: "red",
+        price: getRandomInt(5, 20), // Random price between 5 and 20
+        type: "song",
+        description: "This is a detailed description of the song",
+        displayImageList,
+      });
+    }
+    setDummyData(data);
+  };
   //  const feed =  MusicItemModel(isAvailable);
   const musicItems = [
     {
@@ -132,7 +164,7 @@ const DashBoardpage = () => {
           Test
         </SolidButton> */}
         <div className={styles.dashboardHeroContainer}>
-          {/* <button onClick={clearLocalStorage}>Clear</button> */}
+          <button onClick={generateDummyData}>Create random Entries</button>
           {/* <div className={styles.verticalTailScroll}> */}
           {/* <div className={styles.cards}>
             {musicItems.map((item) => (
