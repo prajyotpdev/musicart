@@ -47,7 +47,7 @@ const DashBoardpage = () => {
   };
 
   const [feed, setFeed] = useState([]);
-  const [dummyData, setDummyData] = useState([]);
+  const [dummyData, setDummyData] = useState();
   const clearLocalStorage = () => {
     localStorage.clear();
     // You can also update the state or perform any other necessary actions
@@ -98,6 +98,7 @@ const DashBoardpage = () => {
       });
     }
     setDummyData(data);
+    console.log(dummyData);
   };
   //  const feed =  MusicItemModel(isAvailable);
   const musicItems = [
@@ -149,6 +150,7 @@ const DashBoardpage = () => {
     <>
       <div className={styles.dashboardPage}>
         <Navbar />
+        <button onClick={generateDummyData}>Create random Entries</button>
         {/* <div className={styles.dashboardHeader}>
           Board
           <FilterForm
@@ -164,7 +166,6 @@ const DashBoardpage = () => {
           Test
         </SolidButton> */}
         <div className={styles.dashboardHeroContainer}>
-          <button onClick={generateDummyData}>Create random Entries</button>
           {/* <div className={styles.verticalTailScroll}> */}
           {/* <div className={styles.cards}>
             {musicItems.map((item) => (
@@ -178,14 +179,15 @@ const DashBoardpage = () => {
           </div> */}
           {isLoading && !musicItemsFeed && <div>..Loading</div>}
           <div className={styles.cards}>
-            {musicItemsFeed &&
-              musicItemsFeed.map((item) => (
+            {dummyData &&
+              dummyData.map((item) => (
                 <MusicComponent
                   id={item._id}
                   displayImageList={item.displayImageList}
                   displayName={item.displayName}
                   price={item.price}
                   colour={item.colour}
+                  type={item.type}
                 >
                   <div key={item._id}></div>
                 </MusicComponent>

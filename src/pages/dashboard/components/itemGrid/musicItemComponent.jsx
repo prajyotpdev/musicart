@@ -38,7 +38,7 @@ function MusicComponent(props) {
             paddingBottom: "5px",
           }}
         >
-          {props.colour}
+          {props.colour} | {props.type}
         </div>
       </div>
     </div>
