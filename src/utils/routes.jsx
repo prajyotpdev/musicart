@@ -18,7 +18,7 @@ const RouteManager = () => {
   const currentUser = useSelector(selectUser);
   const [hasFetched, setHasFetched] = useState(false);
   const navigate = useNavigate();
-  console.log("User:", !!currentUser);
+  console.log("User:", currentUser);
 
   useEffect(() => {
     if (currentUser) {

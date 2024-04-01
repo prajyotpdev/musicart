@@ -1,7 +1,22 @@
-import styles from "../itemGrid/musicItemComponent.module.css";
+import styles from "./musicItemComponent.module.css";
 import img1 from "../../../../assets/images/img1.png";
+import { useNavigate } from "react-router-dom";
+import addtocartbtn from "../../../../assets/icons/addToCartIcon.svg";
+import { useDispatch } from "react-redux";
+import { addCartItem } from "../../../../store/slices/cartSlice";
 
 function MusicComponent(props) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const addToCart = async (e) => {
+    e.preventDefault();
+    // console.log("Item added to cart:", props.id);
+    dispatch(
+      addCartItem({ itemId: props.id, quantity: 1, colour: props.colour })
+    );
+  };
+
   return (
     <div className={styles.musicContainer}>
       <div className={styles.imgContainer}>
@@ -28,7 +43,7 @@ function MusicComponent(props) {
             paddingBottom: "5px",
           }}
         >
-          {props.price}
+          Price - ₹ {props.price}
         </div>
         <div
           style={{
@@ -39,6 +54,9 @@ function MusicComponent(props) {
           }}
         >
           {props.colour} | {props.type}
+        </div>
+        <div onClick={addToCart} className={styles.addtocartbtn}>
+          <img src={addtocartbtn} alt="logo" height={"50px"} />
         </div>
       </div>
     </div>

@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./TopNavbar.module.css";
 import MusicArtLogo from "../../../../assets/icons/musicArtLogo.svg";
 import BoardIcon from "../../../../assets/icons/boardIcon.svg";
 import AnalyticsIcon from "../../../../assets/icons/analyticsIcon.svg";
 import SettingsIcon from "../../../../assets/icons/settingsIcon.svg";
+import CartIcon from "../../../../assets/icons/cartIcon.svg";
 import SignOutIcon from "../../../../assets/icons/signoutIcon.svg";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 const TopNavbar = ({ onSectionChange, currentsection }) => {
   const handleClick = (section) => {
     onSectionChange(section);
+  };
+
+  const handleProfileOptions = () => {
+    setIsProfileSectionOpened(!isProfileSectionOpened);
   };
 
   const navigate = useNavigate();
@@ -20,6 +26,14 @@ const TopNavbar = ({ onSectionChange, currentsection }) => {
     navigate("/musicart/signin");
   };
 
+  const userName = useSelector((state) => state.user.user).name;
+
+  const dispatch = useDispatch();
+  const musicItemsFeed = useSelector(
+    (state) => state.feed && state.feed.feed && state.feed.feed.data
+  );
+  const cartItems = 0;
+  const [isProfileSectionOpened, setIsProfileSectionOpened] = useState(false);
   const dumpAllData = () => {
     localStorage.clear();
     // You can also update the state or perform any other necessary actions
@@ -53,20 +67,40 @@ const TopNavbar = ({ onSectionChange, currentsection }) => {
           Invoice
         </button>
       </div>
-      <div className={styles.rightnavsection}>
-        <button
-          onClick={() => handleClick("settings")}
-          className={`${styles["topnavbar-item"]} ${
-            currentsection === "settings" ? styles.active : ""
-          }`}
+
+      <div className={styles.rightsection}>
+        <div
+          className={styles.viewCartButton}
+          onClick={() => handleClick("cart")}
         >
-          <img src={SettingsIcon} alt="logo" fill="black" />
-          Settings
-        </button>
-        <button onClick={logout} className={`${styles["topnavbar-signout"]}`}>
+          <div className={styles.viewCartButtonLogo}>
+            <img src={CartIcon} alt="cartLogo" height={"20px"} />
+          </div>
+          <div className={styles.viewCartButtonContent}>View Cart</div>
+          <div className={styles.viewCartButtonCount}>{cartItems}</div>
+          {/* <button onClick={logout} className={`${styles["topnavbar-signout"]}`}>
           <img src={SignOutIcon} alt="logo" />
           Logout
-        </button>
+        </button> */}
+        </div>
+        <div
+          className={styles.profileButton}
+          onClick={() => handleProfileOptions()}
+        >
+          {isProfileSectionOpened && (
+            <div className={styles.profileOverlayModal}>
+              <div className={styles.profileName}>{userName}</div>
+              <div className={styles.logOut}>Logout</div>
+            </div>
+          )}
+          <div className={styles.profileAbbreviation}>
+            {userName.split(" ").map((x) => x[0])}
+          </div>
+          {/* <button onClick={logout} className={`${styles["topnavbar-signout"]}`}>
+          <img src={SignOutIcon} alt="logo" />
+          Logout
+        </button> */}
+        </div>
       </div>
     </div>
   );

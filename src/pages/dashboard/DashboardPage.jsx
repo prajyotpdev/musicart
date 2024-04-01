@@ -1,16 +1,11 @@
 import styles from "./DashboardPage.module.css";
-import FilterForm from "../../components/dropdown/Dropdown.jsx";
-import StatusFeed from "./components/feed/StatusFeed.jsx";
-import Navbar from "../home/components/navbar/Navbar.jsx";
-// import { fetchTasks } from "../../store/slices/taskSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import MusicComponent from "./components/itemGrid/musicItemComponent.jsx";
-import img1 from "../../assets/images/img1.png";
-import img2 from "../../assets/images/img2.png";
-import { useNavigate } from "react-router-dom";
 
 import { fetchAllItems } from "../../store/slices/feedSlice.js";
+import FilterBar from "./components/filterBar/FilterBar.jsx";
+import DeskTopBanner from "../home/components/banner/DeskTopBanner.jsx";
 
 const DashBoardpage = () => {
   const dispatch = useDispatch();
@@ -18,14 +13,18 @@ const DashBoardpage = () => {
     (state) => state.feed && state.feed.feed && state.feed.feed.data
   );
   console.log("this is my musicfeed" + musicItemsFeed);
-  const isLoading = useSelector((state) => state.feed.isLoading);
+  const isLoading =
+    useSelector((state) => state.feed.isLoading) ||
+    useSelector(
+      (state) => !state.feed && !state.feed.feed && !state.feed.feed.data
+    );
   // useEffect(() => {
   //   handleGetAllData();
   // });
-  // useEffect(() => {
-  //   // Dispatch fetchAllItems action when component mounts
-  //   dispatch(fetchAllItems());
-  // }, [dispatch]);
+  useEffect(() => {
+    // Dispatch fetchAllItems action when component mounts
+    // dispatch(fetchAllItems());
+  }, [dispatch]);
   const handleGetAllData = async (e) => {
     // dispatch(fetchAllItems());
     // setFeed([
@@ -54,11 +53,11 @@ const DashBoardpage = () => {
   };
   const fetchFeed = async () => {
     try {
-      // dispatch(fetchAllItems());
+      dispatch(fetchAllItems());
       // const response = await axios.get(
       //   "http://localhost:8000/api/v1/musicartitem/all"
       // );
-      // setFeed(response.data);
+      setFeed(response.data);
       console.log("successed");
     } catch (error) {
       console.error("Error fetching feed:", error);
@@ -72,6 +71,11 @@ const DashBoardpage = () => {
   const getRandomInt = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   };
+
+  const getRandomStringFromList = (listofItems) => {
+    return listofItems[getRandomInt(0, listofItems.length - 1)];
+  };
+
   const getRandomImageUrl = () => {
     const width = 200;
     const height = 200;
@@ -86,70 +90,50 @@ const DashBoardpage = () => {
         getRandomImageUrl()
       );
       data.push({
-        isAvailable: Math.random() < 0.5, // Random boolean value for isAvailable
-        company: "Music Company",
+        _id: getRandomInt(10000, 2000000),
+        isAvailable: Math.random() < 0.5,
+        company: getRandomStringFromList([
+          "Boat",
+          "Zebronics",
+          "iBall",
+          "Bose",
+          "Senheiser",
+          "Bang & Olufsen",
+          "JBL",
+          "Phillips",
+        ]),
         aboutItem: "A great song",
-        displayName: `My Favorite Song ${i + 1}`,
-        colour: "red",
-        price: getRandomInt(5, 20), // Random price between 5 and 20
-        type: "song",
+        displayName: "Item:" + getRandomInt(100, 200),
+        colour: getRandomStringFromList([
+          "Red",
+          "Grey",
+          "White",
+          "Black",
+          "Blue",
+        ]),
+        price: getRandomInt(400, 2000), // Random price between 5 and 20
+        type: getRandomStringFromList([
+          "Over-ear Earphone",
+          "On-ear Earphone",
+          "In-ear Earphone",
+        ]),
         description: "This is a detailed description of the song",
         displayImageList,
       });
     }
     setDummyData(data);
-    console.log(dummyData);
+    // console.log(dummyData);
   };
-  //  const feed =  MusicItemModel(isAvailable);
-  const musicItems = [
-    {
-      displayImageList: [img1],
-      displayName: "Sony WH-CH720N",
-      price: "Price - ₹ 3,500",
-      colour: "Black | Over-ear headphone",
-    },
-    {
-      displayImageList: [img2],
-      displayName: "JBL C100SI",
-      price: "Price - ₹ 599",
-      colour: "Black | In-ear headphone",
-    },
-    {
-      displayImageList: [img2],
-      displayName: "JBL C100SI",
-      price: "Price - ₹ 599",
-      colour: "Black | In-ear headphone",
-    },
-    {
-      displayImageList: [img2],
-      displayName: "JBL C100SI",
-      price: "Price - ₹ 599",
-      colour: "Black | In-ear headphone",
-    },
-    {
-      displayImageList: [img2],
-      displayName: "JBL C100SI",
-      price: "Price - ₹ 599",
-      colour: "Black | In-ear headphone",
-    },
-    {
-      displayImageList: [img2],
-      displayName: "JBL C100SI",
-      price: "Price - ₹ 599",
-      colour: "Black | In-ear headphone",
-    },
-    {
-      displayImageList: [img2],
-      displayName: "JBL C100SI",
-      price: "Price - ₹ 599",
-      colour: "Black | In-ear headphone",
-    },
-  ];
 
+  const handleUpdateFeed = (filteredItems) => {
+    console.log("Filtered items:", filteredItems);
+  };
   return (
     <>
       <div className={styles.dashboardPage}>
-        <Navbar />
+        {/* <Navbar /> */}
+        <DeskTopBanner />
+
         <button onClick={generateDummyData}>Create random Entries</button>
         {/* <div className={styles.dashboardHeader}>
           Board
@@ -177,7 +161,8 @@ const DashBoardpage = () => {
               ></MusicComponent>
             ))}
           </div> */}
-          {isLoading && !musicItemsFeed && <div>..Loading</div>}
+          <FilterBar updateFeed={handleUpdateFeed} />
+          {isLoading && !feed && <div>..Loading</div>}
           <div className={styles.cards}>
             {dummyData &&
               dummyData.map((item) => (

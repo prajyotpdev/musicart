@@ -1,12 +1,21 @@
 .musicContainer {
+    
+  position: relative;
      padding: 20px;
      /* margin: 20px; */
      width: 180px;
      height: 180px;
    }
    
-   .imgContainer {
+   .imgContainer {    
+    position: relative;
      background-color: #0066FF2B;
-     padding: 10px;
+     padding: 10px;  margin:auto;
    }
    
+   .addtocartbtn{
+    position: absolute;
+    z-index: 100;  
+    right:3ch;
+    bottom :4ch; 
+   }

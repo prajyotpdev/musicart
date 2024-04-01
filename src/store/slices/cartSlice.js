@@ -2,25 +2,25 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { jwtDecode } from 'jwt-decode';
 import { useSelector } from 'react-redux';
 
-export const addMusicArtItem = createAsyncThunk("addMusicArtItem", async (musicItemData) => {
+export const addCartItem = createAsyncThunk("addCartItem", async (cartItemData) => {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
   console.log(baseUrl);
   const jwttoken = JSON.parse(localStorage.getItem("user")).token;
-    const response = await fetch(`${baseUrl}/api/v1/musicartitem/all`,{
+    const response = await fetch(`${baseUrl}/api/v1/profile/cart/add`,{
       method: 'POST',
       headers : {
         Authorization: jwttoken,      
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(musicItemData),
+      body: JSON.stringify(cartItemData),
     });
     return response.json();
   });
 
-export const fetchAllItems= createAsyncThunk("fetchAllItems", async () => {
+export const fetchAllCartItems= createAsyncThunk("fetchAllCartItems", async () => {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const jwttoken = JSON.parse(localStorage.getItem("user")).token;
-  const response = await fetch(`${baseUrl}/api/v1/musicartitem/all`,{
+  const response = await fetch(`${baseUrl}/api/v1/profile/cart/all`,{
     headers : {
       Authorization: jwttoken,      
       'Content-Type': 'application/json',
@@ -30,10 +30,10 @@ export const fetchAllItems= createAsyncThunk("fetchAllItems", async () => {
 });
 
 
-  export const filterMusicItems = createAsyncThunk("filterMusicItems", async (filterParams) => {
+  export const filtercartItems = createAsyncThunk("filtercartItems", async (filterParams) => {
     const baseUrl = import.meta.env.VITE_API_BASE_URL;
   const jwttoken = JSON.parse(localStorage.getItem("user")).token;
-    const response = await fetch(`${baseUrl}/api/v1/musicartitem/filter`,{                  
+    const response = await fetch(`${baseUrl}/api/v1/Cartitem/filter`,{                  
       headers : {
         Authorization: jwttoken,      
         'Content-Type': 'application/json',
@@ -44,47 +44,47 @@ export const fetchAllItems= createAsyncThunk("fetchAllItems", async () => {
     return response.json();
   });
 
-const feedListSlice = createSlice({
-  name: "feed",
+const cartListSlice = createSlice({
+  name: "cart",
   initialState: {
     isLoading: false,
     data: null,
     isError: false,
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchAllItems.pending, (state, action) => {
+    builder.addCase(fetchAllCartItems.pending, (state, action) => {
       state.isLoading = true;
     });
-    builder.addCase(fetchAllItems.fulfilled, (state, action) => {
+    builder.addCase(fetchAllCartItems.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.feed = action.payload;
+      state.cart = action.payload;
       console.log("this is action.payload " + action.payload)
     });
-    builder.addCase(fetchAllItems.rejected, (state, action) => {
+    builder.addCase(fetchAllCartItems.rejected, (state, action) => {
       console.log("Error", action.payload);
       state.isError = true;
     });
-    builder.addCase(addMusicArtItem.pending, (state) => {
+    builder.addCase(addCartItem.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(addMusicArtItem.fulfilled, (state, action) => {
+    builder.addCase(addCartItem.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.feed = action.payload;
-      console.log("this is action.payload " + action.payload)
+      state.cart = action.payload;
+      console.log("this is action.payload " + JSON.stringify(action.payload) )
     });
-    builder.addCase(addMusicArtItem.rejected, (state, action) => {
+    builder.addCase(addCartItem.rejected, (state, action) => {
       console.error('Error creating task:', action.error.message);
       state.isLoading = false;
       state.isError = true;
     });
-    builder.addCase(filterMusicItems.pending, (state) => {
+    builder.addCase(filtercartItems.pending, (state) => {
       state.isLoading = true;
     });
-    builder.addCase(filterMusicItems.fulfilled, (state, action) => {
+    builder.addCase(filtercartItems.fulfilled, (state, action) => {
       state.isLoading = false;
-      state.feed = action.payload;
+      state.cart = action.payload;
     });
-    builder.addCase(filterMusicItems.rejected, (state, action) => {
+    builder.addCase(filtercartItems.rejected, (state, action) => {
       console.error('Error fetchTaskByStatus:', action.error.message);
       state.isLoading = false;
       state.isError = true;
@@ -92,4 +92,4 @@ const feedListSlice = createSlice({
   },
 });
 
-   export default feedListSlice.reducer;
+   export default cartListSlice.reducer;

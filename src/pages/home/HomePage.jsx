@@ -5,6 +5,8 @@ import Sidebar from "./components/sidebar/Sidebar.jsx";
 import DashBoardpage from "../dashboard/DashboardPage.jsx";
 import TopNavbar from "./components/topnavbar/TopNavbar.jsx";
 import InvoicePage from "../invoice/InvoicePage.jsx";
+import TopRibbon from "./components/top-ribbon/TopRibbon.jsx";
+import CartPage from "../cart/CartPage.jsx";
 
 const HomePage = () => {
   const [activeSection, setActiveSection] = useState("home"); // Track active section
@@ -24,8 +26,8 @@ const HomePage = () => {
         return <DashBoardpage />;
       case "invoice":
         return <InvoicePage />;
-      case "settings":
-        return <CartPage />;
+      case "cart":
+        return <CartPage/>;
       default:
         return <DashBoardpage />;
     }
@@ -33,6 +35,7 @@ const HomePage = () => {
 
   return (
     <div className={styleshomepage.homepage}>
+      <TopRibbon />
       <TopNavbar
         onSectionChange={handleSectionChange}
         currentsection={activeSection}

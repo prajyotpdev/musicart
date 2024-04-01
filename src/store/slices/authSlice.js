@@ -14,7 +14,7 @@ export const fetchuserDetails = createAsyncThunk("fetchuserdetails", async () =>
 
 const user = JSON.parse(localStorage.getItem("user"));
 
-console.log("this is user at localstorage " +user);
+console.log("this is user at localstorage " +user.data);
 // const initialState = user
 // ? { user }
 // : { user: null };

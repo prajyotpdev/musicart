@@ -7,5 +7,8 @@ export default defineConfig({
   plugins: [
   react(),
   nodePolyfills()],
-  base : "/musicart/"
+  base : "/musicart/",  
+  define: {
+    __APP_ENV__: process.env.VITE_VERCEL_ENV,
+  },
 })
