@@ -14,7 +14,6 @@ function RequireAuth({ children }) {
       <Navigate to="/musicart/signin" state={{ from: location }} replace />
     );
   } else {
-    console.log("user is present");
   }
   return <Navigate to="/musicart/home" state={{ from: location }} replace />;
 }

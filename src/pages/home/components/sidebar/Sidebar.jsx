@@ -15,7 +15,6 @@ const Sidebar = ({ onSectionChange, currentsection }) => {
   const navigate = useNavigate();
 
   const logout = () => {
-    console.log("Logout Sucessfully");
     localStorage.removeItem("user");
     navigate("/musicart/signin");
   };

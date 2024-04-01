@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { loginAsync, selectUser } from "../../store/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 // import ArtImage from "../../assets/images/LoginPageArt.png";
+import MusicArtLogo from "../../../src/assets/icons/musicArtLogo.svg";
 
 const RegisterPage = () => {
   const [name, setName] = useState("");
@@ -40,7 +41,6 @@ const RegisterPage = () => {
         password: password,
       })
     );
-    console.log("This is state" + state);
   };
 
   const handleSubmit = async (e) => {
@@ -63,20 +63,9 @@ const RegisterPage = () => {
         },
         body: JSON.stringify(userData),
       });
-      console.log(add);
     } catch (err) {
       console.error();
     }
-
-    console.log(
-      "User details are" +
-        "Name  :" +
-        name +
-        "Email :" +
-        email +
-        " Phonenumber : " +
-        phonenumber
-    );
   };
   const routeChange = () => {
     let path = `signup`;
@@ -86,9 +75,10 @@ const RegisterPage = () => {
   return (
     <div className={styles.registerContainer}>
       <div className={styles.leftSide}>
-        {/* <img src={ArtImage} alt="Logo" /> */}
-        <h2>Welcome aboard my friend</h2>
-        <h4>just a couple of clicks and we start</h4>
+        <button className={styles.logo}>
+          <img src={MusicArtLogo} alt="logo" />
+          MusicArt
+        </button>
       </div>
       <div className={styles.rightSide}>
         <div className={styles.heading}>

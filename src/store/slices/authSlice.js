@@ -14,7 +14,6 @@ export const fetchuserDetails = createAsyncThunk("fetchuserdetails", async () =>
 
 const user = JSON.parse(localStorage.getItem("user"));
 
-console.log("this is user at localstorage " +user.data);
 // const initialState = user
 // ? { user }
 // : { user: null };
@@ -62,7 +61,6 @@ export const registerAsync = (userData) => async (dispatch) => {
 
    export const loginAsync = (userData) => async (dispatch) => {
      dispatch(setLoading(true));
-   console.log("login assync running");
      try {  
       const baseUrl = import.meta.env.VITE_API_BASE_URL;
        const signin = await fetch(`${baseUrl}/api/v1/auth/login`, {

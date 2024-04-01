@@ -16,9 +16,6 @@
      justify-content: space-between;
      align-items: center;
  }
- .desktopBanner{
-  
- }
  
  /* .dashboardScrollableContainer{
      width: 410px;
@@ -27,9 +24,10 @@
  } */
  
  .dashboardHeroContainer{
-   width: 100vw;
+   width: 80vw;
    display: flex;
    padding: 1rem;
+   flex-direction: column;
  }
  .verticalTailScroll{  
    display: flex;

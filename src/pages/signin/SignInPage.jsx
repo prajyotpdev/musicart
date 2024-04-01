@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { loginAsync, selectUser } from "../../store/slices/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import User from "../../store/models/User.jsx";
+import MusicArtLogo from "../../../src/assets/icons/musicArtLogo.svg";
 
 const SignInPage = () => {
   const [email, setEmail] = useState("");
@@ -19,7 +20,6 @@ const SignInPage = () => {
     const updatedUser = new User("prajyot@getTimeMeasureUtils.com");
     localStorage.setItem("user", JSON.stringify(updatedUser));
     setUser(updatedUser);
-    console.log(JSON.stringify(updatedUser));
   };
 
   const handleEmail = (e) => {
@@ -38,7 +38,6 @@ const SignInPage = () => {
         password: password,
       })
     );
-    console.log("This is state" + state);
   };
 
   const handleSubmit = async (e) => {
@@ -60,7 +59,6 @@ const SignInPage = () => {
       });
       if (signin.ok) {
         const responseJson = await signin.json();
-        console.log("Response from the server:", responseJson);
       } else {
         // Handle the case when the request was not successful
         console.error("Signin failed with status:", signin.status);
@@ -89,26 +87,27 @@ const SignInPage = () => {
   return (
     <div className={styles.signInContainer}>
       <div className={styles.leftSide}>
-        <h2>Welcome aboard my friend</h2>
-        <h4>just a couple of clicks and we start</h4>
+        <button className={styles.logo}>
+          <img src={MusicArtLogo} alt="logo" />
+          MusicArt
+        </button>
       </div>
       <div className={styles.rightSide}>
         <div className={styles.heading}>
-          <h1>Login</h1>
+          <h1>Sign in</h1>
         </div>
-        <button onClick={handleCheckHealth}> Check health </button>
         {/* <h3>Your personal job finder is here</h3> */}
         <div className={styles.signInForm}>
           <form onSubmit={handleSignIn} className={styles.signInForm}>
+            Email
             <input
               className={styles.inputfield}
-              placeholder="Email"
               type="email"
               onChange={handleEmail}
             />
+            Password
             <input
               className={styles.inputfield}
-              placeholder="Password"
               type="password"
               onChange={handlePassword}
             />
@@ -116,7 +115,7 @@ const SignInPage = () => {
               Log in
             </button>
             <div className={styles.signup} onClick={routeChange}>
-              Have no account yet?{" "}
+              Don't have account yet?{" "}
               <div className={styles.signupbtn}>Register</div>
             </div>
           </form>

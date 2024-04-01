@@ -21,21 +21,20 @@ const TopNavbar = ({ onSectionChange, currentsection }) => {
   const navigate = useNavigate();
 
   const logout = () => {
-    console.log("Logout Sucessfully");
     localStorage.removeItem("user");
     navigate("/musicart/signin");
   };
 
   const userName = useSelector((state) => state.user.user).name;
-
+  const cartItems = 0;
   const dispatch = useDispatch();
   const musicItemsFeed = useSelector(
     (state) => state.feed && state.feed.feed && state.feed.feed.data
   );
-  const cartItems = 0;
   const [isProfileSectionOpened, setIsProfileSectionOpened] = useState(false);
   const dumpAllData = () => {
     localStorage.clear();
+
     // You can also update the state or perform any other necessary actions
   };
 
@@ -90,7 +89,9 @@ const TopNavbar = ({ onSectionChange, currentsection }) => {
           {isProfileSectionOpened && (
             <div className={styles.profileOverlayModal}>
               <div className={styles.profileName}>{userName}</div>
-              <div className={styles.logOut}>Logout</div>
+              <div className={styles.logOut} onClick={logout}>
+                Logout
+              </div>
             </div>
           )}
           <div className={styles.profileAbbreviation}>

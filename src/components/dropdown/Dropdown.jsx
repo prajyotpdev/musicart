@@ -21,15 +21,12 @@ const FilterForm = ({ data, onFilteredDataChange }) => {
       switch (selectedFilter) {
         case "This Week":
           startDate.setDate(currentDate.getDate() - 7);
-          console.log(startDate);
           break;
         case "This Month":
           startDate.setMonth(currentDate.getMonth() - 1);
-          console.log(startDate);
           break;
         case "This Year":
           startDate.setFullYear(currentDate.getFullYear() - 1);
-          console.log(startDate);
           break;
         default:
           break;

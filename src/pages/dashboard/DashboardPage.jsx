@@ -12,18 +12,13 @@ const DashBoardpage = () => {
   const musicItemsFeed = useSelector(
     (state) => state.feed && state.feed.feed && state.feed.feed.data
   );
-  console.log("this is my musicfeed" + musicItemsFeed);
-  const isLoading =
-    useSelector((state) => state.feed.isLoading) ||
-    useSelector(
-      (state) => !state.feed && !state.feed.feed && !state.feed.feed.data
-    );
+  const isLoading = useSelector((state) => state.feed.isLoading);
   // useEffect(() => {
   //   handleGetAllData();
   // });
   useEffect(() => {
     // Dispatch fetchAllItems action when component mounts
-    // dispatch(fetchAllItems());
+    dispatch(fetchAllItems());
   }, [dispatch]);
   const handleGetAllData = async (e) => {
     // dispatch(fetchAllItems());
@@ -58,7 +53,6 @@ const DashBoardpage = () => {
       //   "http://localhost:8000/api/v1/musicartitem/all"
       // );
       setFeed(response.data);
-      console.log("successed");
     } catch (error) {
       console.error("Error fetching feed:", error);
     }
@@ -134,7 +128,7 @@ const DashBoardpage = () => {
         {/* <Navbar /> */}
         <DeskTopBanner />
 
-        <button onClick={generateDummyData}>Create random Entries</button>
+        {/* <button onClick={generateDummyData}>Create random Entries</button> */}
         {/* <div className={styles.dashboardHeader}>
           Board
           <FilterForm
@@ -162,10 +156,10 @@ const DashBoardpage = () => {
             ))}
           </div> */}
           <FilterBar updateFeed={handleUpdateFeed} />
-          {isLoading && !feed && <div>..Loading</div>}
+          {isLoading && !musicItemsFeed && <div>..Loading</div>}
           <div className={styles.cards}>
-            {dummyData &&
-              dummyData.map((item) => (
+            {musicItemsFeed &&
+              musicItemsFeed.map((item) => (
                 <MusicComponent
                   id={item._id}
                   displayImageList={item.displayImageList}

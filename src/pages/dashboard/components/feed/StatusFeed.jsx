@@ -16,7 +16,6 @@ const StatusFeed = ({ statusId }) => {
   const userID = jwtDecode(
     useSelector((state) => state.user.user).token
   ).userId;
-  console.log("UserID :" + userID);
   const currentTaskList = [
     {
       taskCheckList: {
@@ -86,7 +85,6 @@ const StatusFeed = ({ statusId }) => {
   };
 
   const handleFilteredDataChange = (filteredData) => {
-    console.log("Filtered Data:", filteredData);
   };
 
   return (

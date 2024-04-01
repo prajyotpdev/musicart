@@ -4,7 +4,6 @@ import { useSelector } from 'react-redux';
 
 export const addMusicArtItem = createAsyncThunk("addMusicArtItem", async (musicItemData) => {
   const baseUrl = import.meta.env.VITE_API_BASE_URL;
-  console.log(baseUrl);
   const jwttoken = JSON.parse(localStorage.getItem("user")).token;
     const response = await fetch(`${baseUrl}/api/v1/musicartitem/all`,{
       method: 'POST',

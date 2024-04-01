@@ -15,7 +15,6 @@ const HomePage = () => {
     const updatedUser = new User("prajyot@getTimeMeasureUtils.com");
     localStorage.setItem("user", JSON.stringify(updatedUser));
     setUser(updatedUser);
-    console.log(JSON.stringify(updatedUser));
   };
   const handleSectionChange = (newSection) => {
     setActiveSection(newSection);

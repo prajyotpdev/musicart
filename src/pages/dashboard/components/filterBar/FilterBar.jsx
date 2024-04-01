@@ -16,7 +16,6 @@ function FilterBar({ updateFeed }) {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFilters({ ...filters, [name]: value });
-    console.log("this is filters " + filters);
   };
 
   const clearFilter = async () => {
@@ -50,7 +49,6 @@ function FilterBar({ updateFeed }) {
         })
       );
       const requestBody = JSON.stringify(filterParams);
-      console.log("this is inout to filter request" + requestBody);
       dispatch(filterMusicItems(requestBody));
     } catch (error) {
       console.error("Error fetching filtered items:", error);
@@ -58,7 +56,7 @@ function FilterBar({ updateFeed }) {
   };
 
   return (
-    <div>
+    <div className={styles.filterbar}>
       <select
         name="headphoneType"
         value={filters.headphoneType}
@@ -90,8 +88,8 @@ function FilterBar({ updateFeed }) {
         <option value="4000">3000 - 4000</option>
         <option value="5000">more than 4000</option>
       </select>
-      <button onClick={handleFilter}>Apply Filters</button>
-      <button onClick={clearFilter}>Clear Filters</button>
+      <button onClick={handleFilter} className={styles.filterbutton}>Filter</button>
+      <button onClick={clearFilter} className={styles.clearfilterbutton}>Clear Filters</button>
     </div>
   );
 }
